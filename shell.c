@@ -22,7 +22,6 @@ int main(void)
 
 		if (read == -1)		/* Gestion of EoF or Ctrl+D */
 		{
-			free(line);
 			break;
 		}
 
