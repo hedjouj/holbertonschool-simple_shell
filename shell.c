@@ -33,5 +33,4 @@ int main(void)
 		free(args);
 	}
 	free(line);
-	exit(status);
 }
