@@ -15,11 +15,6 @@ int execute_command(char **args)
 	{
 		return(1);
 	}
-	if (strcmp(args[0], "exit") == 0)
-	{
-		free(args);
-		exit(0);
-	}
 
 	pid = fork();
 
@@ -38,8 +33,6 @@ int execute_command(char **args)
 	else 
 	{
 		wait(&status);
-		if (WIFEXITED(status))
-			return WEXITSTATUS(status);
 	}
 
 	return (1);
