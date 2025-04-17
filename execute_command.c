@@ -22,8 +22,8 @@ int execute_command(char **args)
 	{
 		if (execvp(args[0], args) == -1)
 		{
-			perror("hsh");
-			exit(EXIT_FAILURE);
+			perror("Error:");
+			exit(127);
 		}
 	}
 	else if (pid < 0)
