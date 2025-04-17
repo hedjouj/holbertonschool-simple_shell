@@ -23,7 +23,7 @@ int execute_command(char **args)
 		if (execvp(args[0], args) == -1)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			exit(0);
+			exit(127);
 		}
 	}
 	else if (pid < 0)
@@ -33,6 +33,8 @@ int execute_command(char **args)
 	else 
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+			return WEXITSTATUS(status);
 	}
 
 	return (1);
