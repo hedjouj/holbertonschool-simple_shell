@@ -30,8 +30,8 @@ int main(void)
 
 		args = split_line(line); /* Split the line on token */
 		status = execute_command(args); /* Execute the commande enter by the user */
+		free(args);
 	}
-	free(args);
 	free(line);
 	return (0);
 }
