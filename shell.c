@@ -14,10 +14,13 @@ int main(void)
 	size_t len = 0;
 	ssize_t read;
 	int status = 1;
-
+	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 	while (status)
 	{
-		display_prompt();	/* Display the prompt ("$ ") */
+
+		if (interactive_mode)
+
+			display_prompt();	/* Display the prompt ("$ ") */
 		read = getline(&line, &len, stdin); /* Read the standard user input */
 
 		if (read == -1)		/* Gestion of EoF or Ctrl+D */
