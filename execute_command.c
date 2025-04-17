@@ -23,7 +23,7 @@ int execute_command(char **args)
 		if (execvp(args[0], args) == -1)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			exit(127);
+			exit(0);
 		}
 	}
 	else if (pid < 0)
