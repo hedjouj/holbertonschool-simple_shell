@@ -26,16 +26,15 @@ int execute_command(char **args)
 			exit(127);
 		}
 	}
-	else if (pid < 0)
-	{
-		perror("fork");
-		return (1);
 
-	}
 	else 
-	{
-		wait(&status);
+	{	/* Processus du parent*/ 
 
+		if (wait(&status) == -1)
+		{
+			perror("wait");
+			return (1);
+		}
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 
