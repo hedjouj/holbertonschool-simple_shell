@@ -28,6 +28,8 @@ char *find_path(char *command)
 	dir = strtok(path_copy, ":");
 	while (dir != NULL)
 	{
+		fprintf(stderr, "Searching for '%s' in directory: %s\n", command, dir);
+
 		full_path = malloc(strlen(dir) + strlen(command) + 2);
 		if (!full_path)
 		{
