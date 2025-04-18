@@ -17,7 +17,7 @@ char *find_path(char *command)
 	if (stat(command, &st) == 0)
 		return (strdup(command));
 
-	path_env = getenv("PATH");
+	path_env = my_getenv("PATH");
 	if (!path_env)
 		return (NULL);
 
