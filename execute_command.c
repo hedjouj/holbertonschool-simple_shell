@@ -11,7 +11,7 @@ int execute_command(char **args)
 	pid_t pid;
 	int status;
 
-	if (args[0] == NULL)
+	if (args[0] == NULL || args == NULL)
 	{
 		return(1);
 	}
@@ -29,14 +29,10 @@ int execute_command(char **args)
 
 	else 
 	{	/* Processus du parent*/ 
+		waitpid(pid, &status, 0);
 
-		if (wait(&status) == -1)
-		{
-			perror("wait");
-			return (1);
-		}
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
+		if (WIFEXITED(status)) /* renvoie vrai si le fils s'est terminé normalement*/
+			return (WEXITSTATUS(status)); /* renvoie le code de sortie du fils*/
 
 	}
 
