@@ -1,4 +1,4 @@
-#include "shell.h"
+include "shell.h"
 
 /**
  * execute_command - execute the command of the user in the terminal
@@ -29,11 +29,17 @@ int execute_command(char **args)
 	else if (pid < 0)
 	{
 		perror("fork");
+		return(1);
 	}
 	else 
 	{
 		wait(&status);
-	}
 
-	return (1);
+		/* Extraire et retourner le code de sortie du status */
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
+	}
+}
+
+return (1);
 }

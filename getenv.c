@@ -2,7 +2,7 @@
 
 extern char **environ;
 
-char *getenv(const char *name)
+char *my_getenv(const char *name)
 {
 	int i = 0;
 	size_t len = strlen(name);
