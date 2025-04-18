@@ -29,7 +29,8 @@ int execute_command(char **args)
 	else if (pid < 0)
 	{
 		perror("fork");
-		return(1);
+		return (1);
+
 	}
 	else 
 	{
@@ -39,7 +40,7 @@ int execute_command(char **args)
 		if (WIFEXITED(status))
 			return (WEXITSTATUS(status));
 	}
-}
 
-return (1);
+
+	return (1);
 }
