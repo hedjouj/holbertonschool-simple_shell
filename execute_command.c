@@ -10,6 +10,7 @@ int execute_command(char **args)
 {
 	pid_t pid;
 	int status;
+	char *command_path;
 
 	if (args[0] == NULL || args == NULL)
 	{
@@ -20,14 +21,34 @@ int execute_command(char **args)
 
 	if (pid == 0)
 	{
-		if (execvp(args[0], args) == -1)
+		/* v√rifie si la commande contient un chemin*/
+		if (strchr(args[0], '/') != NULL)
+		{
+			execve(args[0], args, environ);
+		}
+		else
+		{
+			command_path = get_path(args[0]);
+			if (command_path)
+			{
+				execve(command_path, args, environ);
+				free(command_path);
+			}
+		}
+		
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
 			exit(127);
 		}
 	}
 
-	else 
+	else if (pid < 0)
+	{
+		perror("fork");
+		return (1);
+	}
+	else
+
 	{	/* Processus du parent*/ 
 		waitpid(pid, &status, 0);
 

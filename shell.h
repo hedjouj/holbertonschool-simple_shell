@@ -14,4 +14,6 @@ void display_prompt(void);
 char **split_line(char *line);
 int execute_command(char **args);
 char *my_getenv(const char *name);
+char *get_path(char *command);
+extern char **environ;
 #endif
