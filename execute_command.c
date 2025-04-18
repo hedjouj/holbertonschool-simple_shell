@@ -36,9 +36,6 @@ int execute_command(char **args)
 	{
 		wait(&status);
 
-		/* Extraire et retourner le code de sortie du status */
-		if (WIFEXITED(status))
-			return (WEXITSTATUS(status));
 	}
 
 
