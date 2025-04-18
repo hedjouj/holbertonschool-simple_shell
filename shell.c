@@ -16,10 +16,6 @@ int main(void)
 	int status = 1;
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 
-	char *path = my_getenv("PATH");
-	if(path)
-		printf("PATH: %s\n", path);
-
 	while (status)
 	{
 
