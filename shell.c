@@ -15,6 +15,11 @@ int main(void)
 	ssize_t read;
 	int status = 1;
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
+
+	char *path = getenv("PATH");
+	if(path)
+		printf("PATH: %s\n", path);
+
 	while (status)
 	{
 
