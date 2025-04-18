@@ -1,11 +1,5 @@
 #include "shell.h"
-
-
-/**
- * main
- *
- * Return
- */
+extern char **environ; /* Declare environ */
 
 int main(void)
 {
@@ -16,21 +10,27 @@ int main(void)
 	int status = 1;
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 
-	while (status)
+	while (1) /* Infinite loop, breaks only on EOF or exit */
 	{
-
 		if (interactive_mode)
+			display_prompt(); /* Display the prompt ("$ ") */
 
-			display_prompt();	/* Display the prompt ("$ ") */
-		read = getline(&line, &len, stdin); /* Read the standard user input */
+		read = getline(&line, &len, stdin); /* Read user input */
 
-		if (read == -1)		/* Gestion of EoF or Ctrl+D */
-		{
+		if (read == -1)
 			break;
+
+		args = split_line(line); /* Split the input line*/
+
+		/* === Check for built-in commands === */
+
+		if (handle_builtin(args))
+		{
+			free(args);
+			continue;
 		}
 
-		args = split_line(line); /* Split the line on token */
-		status = execute_command(args); /* Execute the commande enter by the user */
+		status = execute_command(args);/* === External command execution === */
 		free(args);
 	}
 	free(line);
