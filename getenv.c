@@ -1,19 +1,19 @@
 #include <string.h>
 
-extern char **env;
+extern char **environ;
 
 char *getenv(const char *name)
 {
 	int i = 0;
 	size_t len = strlen(name);
 
-	while (env[i])
+	while (environ[i])
 	{
 		/* Compare the vars name with the start of the line*/
-		if (strncmp(env[i], name, len) == 0 && env[i][len] == '=')
+		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
 			/* Return a pointer to the value , after the '='*/
-			return &env[i][len + 1];
+			return &environ[i][len + 1];
 		}
 		i++;
 	}
