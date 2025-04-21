@@ -47,13 +47,11 @@ int handle_builtin(char **args)
 {
 	if (args[0] == NULL)
 	{
-
 		return (0);
 	}
 	if (strcmp(args[0], "exit") == 0)
 	{
-		free(args);
-		exit(0);/* We leave without error*/
+		exit(0);
 	}
 
 	else if (strcmp(args[0], "env") == 0)
