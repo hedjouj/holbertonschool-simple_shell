@@ -60,12 +60,10 @@ int execute_command(char **args)
 	char *cmd_path = NULL;
 
 	if (args[0] == NULL)
-		return (1);
-
-	if (strcmp(args[0], "exit") == 0)
 	{
-		return (-1);
+		return (1);
 	}
+
 
 	/* if it's an absolute or relative path */
 	if (access(args[0], X_OK) == 0)
