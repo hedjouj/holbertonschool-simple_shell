@@ -50,8 +50,13 @@ int handle_builtin(char **args)
 
 	if (strcmp(args[0], "exit") == 0)
 	{
-		free(args);
-		exit(0);
+		int exit_status = 0;
+
+		if (args[1] != NULL)
+		{
+			/* Convert the status argument to integer */
+			exit_status = atoi(args[1]);
+		}
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
