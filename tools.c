@@ -52,18 +52,23 @@ int handle_builtin(char **args)
 	{
 		int exit_status = 0;
 
+		
 		if (args[1] != NULL)
 		{
 			/* Convert the status argument to integer */
 			exit_status = atoi(args[1]);
 		}
+		
 		free(args);
 		exit(0);/* We leave without error*/
+		printf("OK\n");
+		exit(exit_status);
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
 		return(0); /* Return 0 for success*/
+		return(1); /* Leave with status 0*/
 	}
 	else if (strcmp(args[0], "pwd") == 0)
 	{
