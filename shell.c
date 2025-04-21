@@ -29,6 +29,8 @@ int main(void)
 			{
 				status = builtin_status; /* we stock the good return code*/
 				free(args);
+				if (strcmp(args[0], "exit") == 0)
+					exit(status);
 				continue;
 			}
 
