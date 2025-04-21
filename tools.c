@@ -46,17 +46,17 @@ char **split_line(char *line)
 int handle_builtin(char **args)
 {
 	if (args[0] == NULL)
-		return (0);
+		return (-1);
 
 	if (strcmp(args[0], "exit") == 0)
 	{
 		free(args);
-		exit(0);
+		exit(0);/* We leave without error*/
 	}
 	else if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
-		return(1); /* Leave with status 0*/
+		return(0); /* Return 0 for success*/
 	}
 	else if (strcmp(args[0], "pwd") == 0)
 	{
@@ -65,10 +65,10 @@ int handle_builtin(char **args)
 			printf("%s\n", cwd);
 		else
 			perror("getcwd");
-		return (1);
+		return (1); /*Error*/
 	}
 
-	return (0); /* Not a builtin */
+	return (-1); /* Not a builtin */
 }
 
 void printenv(void)
