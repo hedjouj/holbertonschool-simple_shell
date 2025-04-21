@@ -14,6 +14,6 @@ void display_prompt(void);
 char **split_line(char *line);
 int execute_command(char **args);
 char *my_getenv(const char *name);
-int handle_builtin(char **args);
+int handle_builtin(char **args, char *line);
 void printenv(void);
 #endif

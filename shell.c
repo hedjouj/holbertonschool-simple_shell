@@ -24,7 +24,7 @@ int main(void)
 			args = split_line(line); /* Split the input line*/
 
 			/* === Check for built-in commands === */
-			builtin_status = handle_builtin(args);
+			builtin_status = handle_builtin(args, line);
 			if (builtin_status != -1) 
 			{
 				status = builtin_status; /* we stock the good return code*/
