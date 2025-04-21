@@ -43,19 +43,22 @@ char **split_line(char *line)
 	return (tokens);
 }
 
-int handle_builtin(char **args)
+int handle_builtin(char **args, char *line)
 {
 	if (args[0] == NULL)
 	{
 		return (0);
 	}
-	if (strcmp(args[0], "exit") == 0)
 	{
-		free(args);
-		exit(0);
+		if (strcmp(args[0], "exit") == 0)
+		{
+			free(args);
+			free(line);
+			exit(0);
+		}
+		return (-1);
 	}
-
-	else if (strcmp(args[0], "env") == 0)
+	if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
 		return(0); /* Return 0 for success*/
