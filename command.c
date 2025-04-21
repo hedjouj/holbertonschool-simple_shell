@@ -62,6 +62,11 @@ int execute_command(char **args)
 	if (args[0] == NULL)
 		return (1);
 
+	if (strcmp(args[0], "exit") == 0)
+	{
+		return (-1);
+	}
+
 	/* if it's an absolute or relative path */
 	if (access(args[0], X_OK) == 0)
 		cmd_path = strdup(args[0]);
