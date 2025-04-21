@@ -9,30 +9,32 @@ int main(void)
 	ssize_t read;
 	int status = 1;
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
-
+	int builtin_status;
+		
 	while (1) /* Infinite loop, breaks only on EOF or exit */
-	{
-		if (interactive_mode)
-			display_prompt(); /* Display the prompt ("$ ") */
-
-		read = getline(&line, &len, stdin); /* Read user input */
-
-		if (read == -1)
-			break;
-
-		args = split_line(line); /* Split the input line*/
-
-		/* === Check for built-in commands === */
-
-		if (handle_builtin(args))
 		{
-			free(args);
-			continue;
-		}
+			if (interactive_mode)
+				display_prompt(); /* Display the prompt ("$ ") */
 
-		status = execute_command(args);/* === External command execution === */
-		free(args);
-	}
+			read = getline(&line, &len, stdin); /* Read user input */
+
+			if (read == -1)
+				break;
+
+			args = split_line(line); /* Split the input line*/
+
+			/* === Check for built-in commands === */
+			builtin_status = handle_builtin(args);
+			if (builtin_status != -1) 
+			{
+				status = builtin_status; /* we stock the good return code*/
+				free(args);
+				continue;
+			}
+
+			status = execute_command(args);/* === External command execution === */
+			free(args);
+		}
 	free(line);
 	return (status);
 }
