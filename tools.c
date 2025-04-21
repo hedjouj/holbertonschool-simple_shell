@@ -46,13 +46,16 @@ char **split_line(char *line)
 int handle_builtin(char **args)
 {
 	if (args[0] == NULL)
-		return (-1);
+	{
 
+		return (0);
+	}
 	if (strcmp(args[0], "exit") == 0)
 	{
 		free(args);
 		exit(0);/* We leave without error*/
 	}
+
 	else if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
