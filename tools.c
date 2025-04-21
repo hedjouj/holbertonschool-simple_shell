@@ -56,8 +56,7 @@ int handle_builtin(char **args)
 	else if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
-		free(args); /* Free before to leave properly*/
-		exit(0); /* Leave with status 0*/
+		return(1); /* Leave with status 0*/
 	}
 	else if (strcmp(args[0], "pwd") == 0)
 	{
