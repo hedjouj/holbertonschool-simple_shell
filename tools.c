@@ -51,6 +51,7 @@ int handle_builtin(char **args)
 	}
 	if (strcmp(args[0], "exit") == 0)
 	{
+		printf("OK\n");
 		exit(0);
 	}
 
