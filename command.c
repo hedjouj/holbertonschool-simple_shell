@@ -96,6 +96,7 @@ int execute_command(char **args)
 	{
 		waitpid(pid, &status, 0);
 		free(cmd_path);
+		free(args);
 		if (WIFEXITED(status))
 			return WEXITSTATUS(status);
 					else
