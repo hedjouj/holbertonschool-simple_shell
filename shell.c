@@ -10,6 +10,8 @@ int main(void)
 	int status = 1;
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 	int builtin_status;
+	int last_status =0;
+
 		
 	while (1) /* Infinite loop, breaks only on EOF or exit */
 		{
