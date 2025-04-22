@@ -45,6 +45,7 @@ char *find_path(char *command)
 		dir = strtok(NULL, ":");
 	}
 	free(path_copy);
+	free(path_env);
 	return (NULL);
 }	
 
