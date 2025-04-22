@@ -52,9 +52,12 @@ int handle_builtin(char **args, char *line)
 	{
 		if (strcmp(args[0], "exit") == 0)
 		{
+			extern int last_status;
+
+
 			free(args);
 			free(line);
-			exit(0);
+			exit(last_status);
 		}
 		return (-1);
 	}
