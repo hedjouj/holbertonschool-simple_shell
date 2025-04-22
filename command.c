@@ -74,6 +74,7 @@ int execute_command(char **args)
 	if (!cmd_path)
 	{
 		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+		free(args);
 		exit(127);
 	}
 
@@ -82,6 +83,7 @@ int execute_command(char **args)
 	{
 		execv(cmd_path, args);
 		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+		free(cmd_path);
 		exit(127);
 	}
 	else if (pid < 0)
