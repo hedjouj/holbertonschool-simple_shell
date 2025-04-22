@@ -16,4 +16,5 @@ int execute_command(char **args);
 char *my_getenv(const char *name);
 int handle_builtin(char **args, char *line);
 void printenv(void);
+extern int last_status;
 #endif
