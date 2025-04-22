@@ -1,5 +1,6 @@
 #include "shell.h"
 extern char **environ; /* Declare environ */
+int last_status = 0;
 
 int main(void)
 {
@@ -34,6 +35,7 @@ int main(void)
 			}
 
 			status = execute_command(args);/* === External command execution === */
+			last_status = status;
 			free(args);
 		}
 	free(line);
