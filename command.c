@@ -18,8 +18,11 @@ char *find_path(char *command)
 		return (strdup(command));
 
 	path_env = my_getenv("PATH");
-	if (!path_env)
+	if (!path_env || path_env[0] == '\0')
+	{
+		fprintf(stderr, "./hsh: 1: %s: not found\n", command);
 		return (NULL);
+	}
 
 	path_copy = strdup(path_env);
 	if (!path_copy)
