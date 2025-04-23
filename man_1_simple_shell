@@ -2,4 +2,65 @@
 .TH SIMPLE SHELL 
 /SH NAME
 simple_shell \- A simple UNIX command interpreter
-
+.SH SYNOPSIS
+.B hsh
+.RI [ command ] 
+/SH DESCRIPTION
+.B simple_shell
+is a simple UNIX command interpreter that replicates functionalities of the simple shell.
+Additional functionalities are listed below.
+.SH OPTIONS
+The shell does not take any options. If any arguments are provided, they are treated as commands to be executed.
+.SH COMMANDS
+The shell supports the following built-in commands:
+.TP
+.B exit
+Exit the shell
+.TP
+.B env
+Print the current environment
+.TP
+.B setenv
+Initialize a new environment variable, or modify an existing one
+.TP
+.B unsetenv
+Remove an environment variable
+.TP
+.B cd
+Change the current directory of the process
+.TP
+.B help
+Display help information
+.SH EXIT STATUS
+The shell returns the exit status of the last command executed, with the following exceptions:
+.TP
+.B 0
+The shell executed successfully
+.TP
+.B 1
+General errors
+.TP
+.B 2
+Misuse of shell builtins
+.TP
+.B 127
+Command not found
+.SH ENVIRONMENT
+The shell inherits the environment from the parent process and can modify it using the built-in commands.
+.SH EXAMPLES
+.TP
+Start the shell:
+.B $ ./hsh
+.TP
+Execute a command:
+.B $ ls -l
+.TP
+Exit the shell:
+.B $ exit
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Written by Sofian Messaoui and Elhadj Reziga.
+.SH "SEE ALSO"
+.BR sh (1),
+.BR bash (1) 
