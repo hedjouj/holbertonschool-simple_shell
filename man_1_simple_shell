@@ -1,0 +1,5 @@
+./" Man page for simple shell
+.TH SIMPLE SHELL 
+/SH NAME
+simple_shell \- A simple UNIX command interpreter
+
