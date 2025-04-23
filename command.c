@@ -76,7 +76,6 @@ int execute_command(char **args)
 
 	if (!cmd_path)
 	{
-		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
 		return(127);
 	}
 
@@ -84,6 +83,7 @@ int execute_command(char **args)
 	if (pid == 0)
 	{
 		execv(cmd_path, args);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
 		free(cmd_path);
 		exit(127);
 	}
@@ -99,7 +99,7 @@ int execute_command(char **args)
 		free(cmd_path);
 		if (WIFEXITED(status))
 			return WEXITSTATUS(status);
-					else
-					return(1);
+		else
+			return(1);
 	}
 }
