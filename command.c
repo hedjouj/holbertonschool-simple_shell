@@ -25,8 +25,7 @@ char *find_path(char *command)
 	/* Search env variable PATH */
 	path_env = my_getenv("PATH");
 	if (!path_env || path_env[0] == '\0')
-		return (NULL);  
-
+		path_env = "/bin:/usr/bin"; /* Current correctif to test*/
 	path_copy = strdup(path_env);
 	if (!path_copy)
 		return (NULL);
