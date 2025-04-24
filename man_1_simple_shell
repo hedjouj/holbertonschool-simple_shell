@@ -26,9 +26,6 @@ Initialize a new environment variable, or modify an existing one
 .B unsetenv
 Remove an environment variable
 .TP
-.B cd
-Change the current directory of the process
-.TP
 .B help
 Display help information
 .SH EXIT STATUS
