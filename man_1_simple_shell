@@ -1,4 +1,5 @@
 ./" Man page for simple shell
+.TH SIMPLE_SHELL 1 "APRIL 2025" "0.9" "Simple Shell Manual"
 .TH SIMPLE SHELL 
 /SH NAME
 simple_shell \- A simple UNIX command interpreter
