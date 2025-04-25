@@ -170,7 +170,7 @@ void handle_cd(char **args)
 		oldpwd = strdup(cwd); /* Keep the previous pwd*/
 
 		if (getcwd(cwd, sizeof(cwd)) != NULL) {
-			setenv("PWD", cwd, 1); /* Update the pwd*/
+			my_gentenv("PWD", cwd, 1); /* Update the pwd*/
 		}
 	}
 }
