@@ -1,6 +1,11 @@
 #include <string.h>
-
-extern char **environ;
+#include "shell.h"
+/**
+ * my_getenv - Retrieves the value of an environment variable
+ * @name: Name of the variable to find
+ *
+ * Return: Pointer to the value of the variable, or NULL if not found
+ */
 
 char *my_getenv(const char *name)
 {
@@ -13,10 +18,10 @@ char *my_getenv(const char *name)
 		if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
 		{
 			/* Return a pointer to the value , after the '='*/
-			return &environ[i][len + 1];
+			return (&environ[i][len + 1]);
 		}
 		i++;
 	}
 
-	return NULL; /* No founded env variable*/
+	return (NULL); /* No founded env variable*/
 }

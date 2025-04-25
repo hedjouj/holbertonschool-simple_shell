@@ -1,7 +1,11 @@
 #include "shell.h"
-extern char **environ; /* Declare environ */
-int last_status = 0;
 
+int last_status = 0;
+/**
+ * main - Entry point for the simple shell
+ *
+ * Return: Exit status of the shell
+ */
 int main(void)
 {
 	char *line = NULL;
@@ -12,32 +16,31 @@ int main(void)
 	int interactive_mode = isatty(STDIN_FILENO) && isatty(STDERR_FILENO);
 	int builtin_status;
 
-		
 	while (1) /* Infinite loop, breaks only on EOF or exit */
+	{
+		if (interactive_mode)
+			display_prompt(); /* Display the prompt ("$ ") */
+
+		read = getline(&line, &len, stdin); /* Read user input */
+
+		if (read == -1)
+			break;
+
+		args = split_line(line); /* Split the input line*/
+
+		/* === Check for built-in commands === */
+		builtin_status = handle_builtin(args, line);
+		if (builtin_status != -1)
 		{
-			if (interactive_mode)
-				display_prompt(); /* Display the prompt ("$ ") */
-
-			read = getline(&line, &len, stdin); /* Read user input */
-
-			if (read == -1)
-				break;
-
-			args = split_line(line); /* Split the input line*/
-
-			/* === Check for built-in commands === */
-			builtin_status = handle_builtin(args, line);
-			if (builtin_status != -1) 
-			{
-				status = builtin_status; /* we stock the good return code*/
-				free(args);
-				continue;
-			}
-
-			status = execute_command(args);/* === External command execution === */
-			last_status = status;
+			status = builtin_status; /* we stock the good return code*/
 			free(args);
+			continue;
 		}
+
+		status = execute_command(args);/* === External command execution === */
+		last_status = status;
+		free(args);
+	}
 	free(line);
 	return (status);
 }

@@ -4,25 +4,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-extern char **environ;
 
+/**
+ * display_prompt - Displays the shell prompt
+ */
 void display_prompt(void)
 {
 	printf("$ ");
 	fflush(stdout); /* Force the immediat displaying of the prompt */
 }
 
-/*
+/**
+ * split_line - Splits a line into tokens (words)
+ * @line: The input line to split
  *
- *
- *
- *
+ * Return: Null-terminated array of tokens
  */
-
 char **split_line(char *line)
 
 {
-	int bufsize = 64; 
+	int bufsize = 64;
 	int i = 0;
 	char **tokens = malloc(sizeof(char *) * bufsize);
 	char *token;
@@ -43,6 +44,13 @@ char **split_line(char *line)
 	return (tokens);
 }
 
+/**
+ * handle_builtin - Handles builtin commands (exit, env, pwd)
+ * @args: Array of arguments
+ * @line: Line buffer to free if needed
+ *
+ * Return: -1 if not a builtin, 0 or exit otherwise
+ */
 int handle_builtin(char **args, char *line)
 {
 	if (args[0] == NULL)
@@ -52,8 +60,6 @@ int handle_builtin(char **args, char *line)
 	{
 		if (strcmp(args[0], "exit") == 0)
 		{
-			extern int last_status;
-
 
 			free(args);
 			free(line);
@@ -64,12 +70,14 @@ int handle_builtin(char **args, char *line)
 	if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
-		return(0); /* Return 0 for success*/
+		return (0);
 	}
 	else if (strcmp(args[0], "pwd") == 0)
 	{
 		char cwd[1024];
+
 		if (getcwd(cwd, sizeof(cwd)) != NULL)
+
 			printf("%s\n", cwd);
 		else
 			perror("getcwd");
@@ -79,6 +87,9 @@ int handle_builtin(char **args, char *line)
 	return (-1); /* Not a builtin */
 }
 
+/**
+ * printenv - Prints the current environment variables
+ */
 void printenv(void)
 {
 	int i;
