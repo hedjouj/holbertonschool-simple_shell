@@ -159,11 +159,6 @@ You can also use `Ctrl + D` to exit the shell.
 🧩 More features will be added over time — stay tuned as our shell continues to grow and improve!
 
 
-## 🔍 What Does Our Simple Shell Actually Do?
-
-Let’s now take a closer look at how our **Simple Shell** behaves in the terminal when you enter specific commands.
-
-
 ## 🧑‍🤝‍🧑 Authors
 
 This project was carried out by: 
