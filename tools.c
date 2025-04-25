@@ -49,19 +49,14 @@ int handle_builtin(char **args, char *line)
 	{
 		return (0);
 	}
+
+	if (strcmp(args[0], "exit") == 0)
 	{
-		if (strcmp(args[0], "exit") == 0)
-		{
-			extern int last_status;
-
-
-			free(args);
-			free(line);
-			exit(last_status);
-		}
-		return (-1);
+		free(args);
+		free(line);
+		exit(last_status);
 	}
-	if (strcmp(args[0], "env") == 0)
+	else if (strcmp(args[0], "env") == 0)
 	{
 		printenv();
 		return(0); /* Return 0 for success*/
