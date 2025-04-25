@@ -114,7 +114,11 @@ int execute_command(char **args)
 
 	cmd_path = find_path(args[0]);
 	if (!cmd_path)
-		return (1);
+	{
+		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+		return (127);
+	}
+
 
 	status = run_exec(cmd_path, args);
 	free(cmd_path);
