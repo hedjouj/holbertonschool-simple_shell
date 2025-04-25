@@ -137,19 +137,23 @@ int execute_command(char **args)
  */
 void handle_cd(char **args)
 {
-	static char *oldpwd = NULL; /* save the last directory*/
+	static char *oldpwd; /* save the last directory*/
 	char *dir = args[1];
 	char cwd[1024];
 
-	if (dir == NULL) { /* cd without any argument*/
+	if (dir == NULL)
+	{ /* cd without any argument*/
 		dir = my_getenv("HOME");
-		if (dir == NULL) {
+		if (dir == NULL)
+		{
 			fprintf(stderr, "cd: HOME not set\n");
 			return;
 		}
 	}
-	else if (strcmp(dir, "-") == 0) { /* if cd with -*/
-		if (oldpwd == NULL) {
+	else if (strcmp(dir, "-") == 0)
+	{ /* if cd with -*/
+		if (oldpwd == NULL)
+		{
 			fprintf(stderr, "cd: OLDPWD not set\n");
 			return;
 		}
@@ -157,14 +161,17 @@ void handle_cd(char **args)
 		dir = oldpwd;
 	}
 
-	if (getcwd(cwd, sizeof(cwd)) == NULL) {
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	{
 		perror("getcwd");
 		return;
 	}
 
-	if (chdir(dir) != 0) { /* if the change failed*/
+	if (chdir(dir) != 0)
+	{ /* if the change failed*/
 		perror("cd");
-	} else {
+	} else
+	{
 		/* if change success*/
 		free(oldpwd);
 		oldpwd = strdup(cwd); /* Keep the previous pwd*/
