@@ -142,7 +142,7 @@ void handle_cd(char **args)
 	char cwd[1024];
 
 	if (dir == NULL) { /* cd without any argument*/
-		dir = getenv("HOME");
+		dir = my_getenv("HOME");
 		if (dir == NULL) {
 			fprintf(stderr, "cd: HOME not set\n");
 			return;
@@ -169,8 +169,5 @@ void handle_cd(char **args)
 		free(oldpwd);
 		oldpwd = strdup(cwd); /* Keep the previous pwd*/
 
-		if (getcwd(cwd, sizeof(cwd)) != NULL) {
-			my_gentenv("PWD", cwd, 1); /* Update the pwd*/
-		}
 	}
 }
