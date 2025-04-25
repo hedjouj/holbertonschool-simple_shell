@@ -1,5 +1,5 @@
 # 🚀 Creation of Our `Simple Shell` 
-[IMAGE](https://ibb.co/tTyvKfj6)
+![IMAGE](terminal.gif)
 
 Welcome to our custom `Simple Shell` project! 🎉
 
