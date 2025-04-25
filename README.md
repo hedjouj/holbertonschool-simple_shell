@@ -118,4 +118,54 @@ root@b6579b5f94d3:/home/ubuntu/holbertonschool-printf# valgrind ./a.out
 ==27531== For lists of detected and suppressed errors, rerun with: -s
 ==27531== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
+## 🐚 Let's Dive Into the Simple Shell
 
+Now that everything is clear, it's time to dive into our **Simple Shell** project!
+
+---
+
+### 📦 Clone the Repository
+
+Before getting started, make sure to clone the repository using the following command in your terminal:
+
+
+`gh repo clone hedjouj/holbertonschool-simple_shell`
+
+
+### 🛠️ Compile the Project
+
+Once the repository is cloned, you'll need to **compile the source files** to make sure everything runs smoothly.  
+No worries — just copy and paste the command below into your terminal:
+
+
+`gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh`
+
+🚀 Launch the Shell
+After compilation is complete, you're ready to start using the shell.
+Run the following command:
+
+`./hsh`
+
+🎉 Ready to Explore!
+You're all set! Try running some of the following basic commands:
+
+`ls`
+`pwd`
+`env`
+`exit`
+You can also use `Ctrl + D` to exit the shell.
+
+🧩 More features will be added over time — stay tuned as our shell continues to grow and improve!
+
+
+## 🔍 What Does Our Simple Shell Actually Do?
+
+Let’s now take a closer look at how our **Simple Shell** behaves in the terminal when you enter specific commands.
+
+
+## 🧑‍🤝‍🧑 Authors
+
+This project was carried out by: 
+
+- [El.Hadj Messaoui](https://github.com/hedjouj)
+- [Sofian Messaoui](https://github.com/smessaoui31)
