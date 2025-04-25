@@ -19,4 +19,5 @@ char *find_path(char *command);
 int handle_builtin(char **args, char *line);
 void printenv(void);
 extern int last_status;
+void handle_cd(char **args);
 #endif
