@@ -117,6 +117,7 @@ root@b6579b5f94d3:/home/ubuntu/holbertonschool-printf# valgrind ./a.out
 ==27531== 
 ==27531== For lists of detected and suppressed errors, rerun with: -s
 ==27531== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+```
 
 ## 🐚 Let's Dive Into the Simple Shell
 
