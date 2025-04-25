@@ -124,3 +124,53 @@ int execute_command(char **args)
 	free(cmd_path);
 	return (status);
 }
+
+/**
+ * handle_cd - Handles the cd command
+ * @args: Array of arguments from the user input
+ *
+ * Description:
+ * - If no argument, change directory to $HOME.
+ * - If argument is "-", change to previous directory (OLDPWD).
+ * - Otherwise, change to the directory specified.
+ * - Updates the environment variable PWD after directory change.
+ */
+void handle_cd(char **args)
+{
+	static char *oldpwd = NULL; /* save the last directory*/
+	char *dir = args[1];
+	char cwd[1024];
+
+	if (dir == NULL) { /* cd without any argument*/
+		dir = getenv("HOME");
+		if (dir == NULL) {
+			fprintf(stderr, "cd: HOME not set\n");
+			return;
+		}
+	}
+	else if (strcmp(dir, "-") == 0) { /* if cd with -*/
+		if (oldpwd == NULL) {
+			fprintf(stderr, "cd: OLDPWD not set\n");
+			return;
+		}
+		printf("%s\n", oldpwd); /* Display the previous pwd*/
+		dir = oldpwd;
+	}
+
+	if (getcwd(cwd, sizeof(cwd)) == NULL) {
+		perror("getcwd");
+		return;
+	}
+
+	if (chdir(dir) != 0) { /* if the change failed*/
+		perror("cd");
+	} else {
+		/* if change success*/
+		free(oldpwd);
+		oldpwd = strdup(cwd); /* Keep the previous pwd*/
+
+		if (getcwd(cwd, sizeof(cwd)) != NULL) {
+			setenv("PWD", cwd, 1); /* Update the pwd*/
+		}
+	}
+}

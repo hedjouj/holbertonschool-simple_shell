@@ -65,26 +65,30 @@ int handle_builtin(char **args, char *line)
 			free(line);
 			exit(last_status);
 		}
-		return (-1);
-	}
-	if (strcmp(args[0], "env") == 0)
-	{
-		printenv();
-		return (0);
-	}
-	else if (strcmp(args[0], "pwd") == 0)
-	{
-		char cwd[1024];
+		if (strcmp(args[0], "env") == 0)
+		{
+			printenv();
+			return (0);
+		}
+		else if (strcmp(args[0], "pwd") == 0)
+		{
+			char cwd[1024];
 
-		if (getcwd(cwd, sizeof(cwd)) != NULL)
+			if (getcwd(cwd, sizeof(cwd)) != NULL)
 
-			printf("%s\n", cwd);
-		else
-			perror("getcwd");
-		return (1); /*Error*/
+				printf("%s\n", cwd);
+			else
+				perror("getcwd");
+			return (1); /*Error*/
+		}
+		if (strcmp(args[0], "cd") == 0)
+		{
+			handle_cd(args);
+			return (0);
+		}
+
+		return (-1); /* Not a builtin */
 	}
-
-	return (-1); /* Not a builtin */
 }
 
 /**
